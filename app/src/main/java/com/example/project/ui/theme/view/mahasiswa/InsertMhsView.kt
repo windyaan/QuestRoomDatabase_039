@@ -13,9 +13,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -208,7 +210,7 @@ fun InsertMhsView(
     val coroutineScope = rememberCoroutineScope()
 
     //Observasi perubahan SnackbarMessage
-    launchedEffect(uiState.snackBarMessage) {
+    LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->
             coroutineScope.launch {
                 snackbarHostState.showSnackbar(message) //Tampilkan Snackbar
@@ -219,7 +221,7 @@ fun InsertMhsView(
 
     Scaffold (
         modifier = modifier,
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState)} //Tempat
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) } //Tempat
     ){
         padding ->
         Column (
@@ -238,7 +240,7 @@ fun InsertMhsView(
             InsertBodyMhs(
                 uiState = uiState,
                 onValueChange = { updatedEvent ->
-                    viewModel.updateState(updatedEvent) //Update state di ViewMode;
+                    viewModel.updateState(updatedEvent) //Update state di ViewModel;
                 },
                 onClick = {
                     coroutineScope.launch {
