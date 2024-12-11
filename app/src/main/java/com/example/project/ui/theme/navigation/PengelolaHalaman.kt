@@ -3,8 +3,9 @@ package com.example.project.ui.theme.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.composable
-import androidx.navigation.rememberNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.project.ui.theme.view.mahasiswa.DestinasiInsert
 import com.example.project.ui.theme.view.mahasiswa.InsertMhsView
 

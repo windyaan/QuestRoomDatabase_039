@@ -1,6 +1,8 @@
 package com.example.project.ui.theme.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project.Repository.RepositoryMhs
@@ -19,7 +21,7 @@ data class MahasiswaEvent(
 )
 
 //menyimpan input form kedlm entity
-fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa:Mahasiswa(
+fun MahasiswaEvent.toMahasiswaEntity(): Mahasiswa = Mahasiswa(
     nim = nim,
     nama = nama,
     jenisKelamin = jenisKelamin,
@@ -42,7 +44,7 @@ data class FormErrorState(
                 && jenisKelamin == null
                 && alamat == null
                 && kelas == null
-                &&angkatan == null
+                && angkatan == null
     }
 }
 
@@ -65,7 +67,7 @@ class MahasiswaViewModel (
     }
 
     fun saveData(){
-        val currentEvent = uiState.MahasiswaEvent
+        val currentEvent = uiState.mahasiswaEvent
 
         if (validateFields()){
             viewModelScope.launch{
@@ -73,10 +75,10 @@ class MahasiswaViewModel (
                     repositoryMhs.insertMhs(currentEvent.toMahasiswaEntity())
                     uiState = uiState.copy(
                         snackBarMessage = "Data berhasil disimpan",
-                        MahasiswaEvent = MahasiswaEvent(), //reset input form
+                        mahasiswaEvent = MahasiswaEvent(), //reset input form
                         isEntryValid = FormErrorState(), //reset error state
                     )
-                } catch (e: exception){
+                } catch (e: Exception){
                     uiState = uiState.copy(
                         snackBarMessage = "Data gagal disimpan"
                     )
@@ -89,9 +91,14 @@ class MahasiswaViewModel (
         }
     }
 
+    //reset pesan
+    fun resetSnackBarMessage(){
+        uiState = uiState.copy(snackBarMessage = null)
+    }
+
     //validasi
-    private fun validateFields(): Boolean{
-        val event = uiState.MahasiswaEvent
+    private fun validateFields(): Boolean {
+        val event = uiState.mahasiswaEvent
         val errorState = FormErrorState(
             nim = if (event.nim.isNotEmpty())
                 null else "NIM tidak boleh kosong",
@@ -106,12 +113,9 @@ class MahasiswaViewModel (
             angkatan = if (event.angkatan.isNotEmpty())
                 null else "Angkatan tidak boleh kosong",
         )
+        uiState = uiState.copy(isEntryValid = errorState)
+        return errorState.isValid()
     }
-}
-
-//reset pesan
-fun resetSnackBarMessage(){
-    uiState = uiState.copy(snackBarMessage = null)
 }
 
 
