@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project.Repository.RepositoryMhs
+import com.example.project.data.entity.Mahasiswa
 import com.example.project.ui.theme.navigation.DestinasiDetail
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
@@ -74,4 +75,17 @@ data class DetailUiState(
 
     val isUiEventNotEmpty: Boolean
         get() = detailUiEvent != MahasiswaEvent()
+}
+//Data class untuk menampung data yang akan ditampilkan di UI
+
+//memindahkan data dari entity ke ui
+fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent {
+    return MahasiswaEvent(
+        nim = nim,
+        nama = nama,
+        jenisKelamin = jenisKelamin,
+        alamat = alamat,
+        kelas = kelas,
+        angkatan = angkatan
+    )
 }
