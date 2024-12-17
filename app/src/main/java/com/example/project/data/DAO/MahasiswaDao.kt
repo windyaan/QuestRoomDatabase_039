@@ -6,7 +6,8 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.project.data.entity.Mahasiswa
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface MahasiswaDao {
