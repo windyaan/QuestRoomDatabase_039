@@ -70,7 +70,7 @@ fun UpdateMhsView(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            
+
             // Isi Body
             InsertBodyMhs(
                 uiState = uiState,
