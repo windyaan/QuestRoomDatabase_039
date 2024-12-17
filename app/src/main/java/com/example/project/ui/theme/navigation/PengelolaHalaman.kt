@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.project.ui.theme.view.mahasiswa.DestinasiInsert
+import com.example.project.ui.theme.view.mahasiswa.DetailMhsView
 import com.example.project.ui.theme.view.mahasiswa.HomeMhsView
 import com.example.project.ui.theme.view.mahasiswa.InsertMhsView
 import com.example.project.ui.theme.view.mahasiswa.UpdateMhsView
