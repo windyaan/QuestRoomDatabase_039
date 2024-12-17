@@ -11,6 +11,8 @@ import androidx.navigation.navArgument
 import com.example.project.ui.theme.view.mahasiswa.DestinasiInsert
 import com.example.project.ui.theme.view.mahasiswa.HomeMhsView
 import com.example.project.ui.theme.view.mahasiswa.InsertMhsView
+import com.example.project.ui.theme.view.mahasiswa.UpdateMhsView
+import com.example.project.ui.theme.viewmodel.DetailMhsViewModel
 
 @Composable
 fun PengelolaHalaman(
@@ -76,6 +78,28 @@ fun PengelolaHalaman(
                     }
                 )
             }
+        }
+
+
+        composable(
+            DestinasiUpdate.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdate.NIM) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+
+
+            UpdateMhsView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier,
+            )
         }
     }
 }
