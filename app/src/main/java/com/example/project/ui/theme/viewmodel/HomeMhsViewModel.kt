@@ -3,6 +3,7 @@ package com.example.project.ui.theme.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.project.Repository.RepositoryMhs
+import com.example.project.data.entity.Mahasiswa
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -46,3 +47,10 @@ class HomeMhsViewModel (
         )
 
 }
+
+data class HomeUiState (
+    val listMhs: List<Mahasiswa> = listOf(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+)
